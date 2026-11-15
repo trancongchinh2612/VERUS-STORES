@@ -1,0 +1,25 @@
+/* ===== VERUS LAYOUT FIX v1 (toàn trang) ===== */
+/* chặn trang bị rộng hơn màn hình (trình duyệt điện thoại sẽ tự thu nhỏ, làm lệch/cắt mép phải) */
+html,body{max-width:100%;overflow-x:clip}
+/* thanh tìm kiếm trên header: co được, không đẩy tràn */
+.head{min-width:0}
+@media (max-width:700px){.head{flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important}}
+.head .brand-lockup{flex:0 0 auto}
+.head .head-search{min-width:0!important;flex:1 1 0!important}
+.head .head-search input{min-width:0;width:100%;flex:1 1 auto}
+/* lưới sản phẩm: các thẻ cùng chiều cao, nút luôn nằm đáy thẻ */
+#products{align-items:stretch!important}
+#products .product{display:flex;flex-direction:column;min-width:0}
+#products .product>button.outline{margin-top:auto!important}
+#products .product>.tiny.muted{margin-bottom:10px}
+@media (max-width:420px){
+  #products .product>button.outline{font-size:11px!important;letter-spacing:.04em!important;padding-left:6px!important;padding-right:6px!important;min-height:46px;line-height:1.2}
+}
+/* khối "Nói thẳng cho dễ chọn": dấu ngoặc kép không còn che dòng eyebrow */
+html.lux .shopstatement{padding-top:clamp(72px,12vw,110px)!important}
+html.lux .shopstatement:before{font-size:clamp(72px,16vw,120px);top:-.4em}
+html.lux .shopstatement .eyebrow{position:relative;z-index:1}
+/* nút chân trang: viền vàng, hợp tông */
+html.lux .footer .row{display:flex;flex-wrap:wrap;gap:10px}
+html.lux .footer .row button.outline{background:rgba(255,255,255,.03)!important;color:var(--lx-ink,#f3ead7)!important;border:1px solid rgba(201,169,106,.5)!important;border-radius:999px!important;min-height:46px;flex:1 1 calc(50% - 10px);box-shadow:none!important}
+html.lux .footer .row button.outline:hover{border-color:var(--lx-gold,#c9a96a)!important;color:var(--lx-gold2,#ead6a6)!important}

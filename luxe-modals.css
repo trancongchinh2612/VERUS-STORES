@@ -1,0 +1,270 @@
+/* ==========================================================================
+   VERUS LUXE — Modals, pop-ups & panels (dark luxury, glass, gold hairlines)
+   Presentation only. Covers: giỏ hàng, yêu thích, đăng nhập Google, theo dõi
+   đơn, mã giảm giá, chính sách, hỗ trợ, chi tiết sản phẩm, checkout, thanh
+   toán QR, tài khoản khách hàng, chat, thông báo (toast).
+   The in-page demo admin (.admin) is not touched.
+   ========================================================================== */
+html.lux{
+  --mx-glass:linear-gradient(165deg,rgba(26,26,31,.94),rgba(13,13,16,.97) 55%,rgba(9,9,11,.98));
+  --mx-card:linear-gradient(170deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+  --mx-card-solid:#121216;
+  --mx-line:rgba(255,255,255,.09);
+  --mx-line2:rgba(255,255,255,.16);
+  --mx-gold-line:rgba(201,169,106,.32);
+  --mx-gold-soft:rgba(201,169,106,.10);
+  --mx-field:rgba(255,255,255,.035);
+  --mx-ok:#86d6a8;--mx-ok-bg:rgba(76,175,120,.12);--mx-ok-line:rgba(76,175,120,.35);
+  --mx-warn:#f0c987;--mx-err:#ff8a94;--mx-err-bg:rgba(226,27,45,.10);--mx-err-line:rgba(226,27,45,.38);
+  --mx-gold-grad:linear-gradient(135deg,var(--lx-gold2),var(--lx-gold) 58%,var(--lx-gold3));
+}
+
+/* ---------- Backdrop ---------- */
+html.lux .modalbg{background:radial-gradient(1200px 700px at 50% 0%,rgba(201,169,106,.07),transparent 60%),rgba(3,3,4,.80)!important;backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%)}
+html.lux .modalbg.show .modal{animation:mxIn .55s var(--lx-ease) both}
+@keyframes mxIn{from{opacity:0;transform:perspective(1200px) translate3d(0,26px,0) rotateX(6deg) scale(.985)}to{opacity:1;transform:none}}
+
+/* ---------- Shell ---------- */
+html.lux .modal{color-scheme:dark;background:var(--mx-glass)!important;color:var(--lx-ink)!important;
+  border:1px solid var(--mx-gold-line)!important;border-radius:24px!important;
+  box-shadow:0 50px 140px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.07),inset 0 0 80px rgba(201,169,106,.025)!important;
+  backdrop-filter:blur(26px) saturate(140%);-webkit-backdrop-filter:blur(26px) saturate(140%);
+  font-family:var(--lx-sans)!important;scrollbar-color:rgba(201,169,106,.35) transparent;scrollbar-width:thin}
+html.lux .modal::-webkit-scrollbar{width:6px}
+html.lux .modal::-webkit-scrollbar-thumb{background:rgba(201,169,106,.35);border-radius:9px}
+html.lux .modal:before{content:"";position:absolute;left:24px;right:24px;top:0;height:1px;pointer-events:none;z-index:3;
+  background:linear-gradient(90deg,transparent,rgba(234,214,166,.85),transparent)}
+
+/* ---------- Header + close ---------- */
+html.lux .modal .modalhead{background:linear-gradient(180deg,rgba(17,17,21,.98),rgba(17,17,21,.92))!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid transparent!important;border-image:linear-gradient(90deg,rgba(201,169,106,.55),rgba(255,255,255,.06) 70%) 1!important;
+  padding-bottom:14px!important;margin-bottom:18px!important;align-items:center!important;gap:14px}
+html.lux .modal #modalTitle{font-family:var(--lx-serif)!important;font-weight:600!important;font-size:clamp(26px,6.4vw,34px)!important;line-height:1.08!important;
+  letter-spacing:.005em!important;color:var(--lx-ink)!important;text-transform:none!important;margin:0!important}
+html.lux .modal .modalhead button.light{background:rgba(255,255,255,.03)!important;color:var(--lx-gold2)!important;border:1px solid var(--mx-gold-line)!important;
+  border-radius:999px!important;padding:9px 16px!important;min-height:40px!important;font-size:11.5px!important;font-weight:600!important;letter-spacing:.18em!important;
+  text-transform:uppercase;box-shadow:none!important;white-space:nowrap;flex:0 0 auto;transition:background .3s,color .3s,border-color .3s,transform .2s!important}
+html.lux .modal .modalhead button.light:hover{background:var(--mx-gold-grad)!important;color:#0b0b0b!important;border-color:transparent!important}
+html.lux .modal .modalhead button.light:active{transform:scale(.96)}
+
+/* ---------- Typography ---------- */
+html.lux .modal #modalBody{color:var(--lx-ink)!important;line-height:1.65}
+html.lux .modal h1,html.lux .modal h2,html.lux .modal h3,html.lux .modal h4,html.lux .modal h5{color:var(--lx-ink)!important}
+html.lux .modal #modalBody h2{font-family:var(--lx-serif)!important;font-weight:600!important;font-size:clamp(26px,6vw,34px)!important;line-height:1.1!important;letter-spacing:0!important}
+html.lux .modal #modalBody h3{font-family:var(--lx-serif)!important;font-weight:600!important;font-size:clamp(20px,4.8vw,24px)!important;letter-spacing:.005em!important;line-height:1.25!important}
+html.lux .modal #modalBody h4{font-weight:600!important;font-size:11.5px!important;letter-spacing:.22em!important;text-transform:uppercase;color:var(--lx-gold)!important}
+html.lux .modal p,html.lux .modal li,html.lux .modal td,html.lux .modal th,html.lux .modal label,html.lux .modal small,html.lux .modal span,html.lux .modal em,html.lux .modal div{color:inherit}
+html.lux .modal #modalBody p{color:#cfc8bb!important}
+html.lux .modal b,html.lux .modal strong{color:var(--lx-ink)!important}
+html.lux .modal .muted,html.lux .modal .tiny.muted,html.lux .modal p.muted,html.lux .modal #modalBody p.muted,html.lux .modal #modalBody .tiny.muted{color:var(--lx-mute)!important}
+html.lux .modal .eyebrow,html.lux .modal .eyebrow.muted,html.lux .modal .customer-kicker{color:var(--lx-gold)!important;letter-spacing:.3em!important;font-weight:600!important;font-size:10.5px!important}
+html.lux .modal a{color:var(--lx-gold2)!important;text-decoration-color:rgba(201,169,106,.45)!important;text-underline-offset:4px}
+html.lux .modal a:hover{color:#fff4d9!important}
+html.lux .modal hr{border:0!important;height:1px;background:var(--mx-line)!important}
+html.lux .modal table{border-color:var(--mx-line)!important;border-collapse:collapse}
+html.lux .modal th{color:var(--lx-gold)!important;font-weight:600;letter-spacing:.12em;font-size:11px;text-transform:uppercase;background:rgba(201,169,106,.06)!important}
+html.lux .modal td,html.lux .modal th{border-color:var(--mx-line)!important;color:#d8d1c4!important}
+html.lux .modal .tablewrap{border:1px solid var(--mx-line)!important;border-radius:14px!important;background:rgba(255,255,255,.02)!important}
+
+/* ---------- Form controls ---------- */
+html.lux .modal input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=range]),
+html.lux .modal select,html.lux .modal textarea{background:var(--mx-field)!important;color:var(--lx-ink)!important;border:1px solid var(--mx-line2)!important;
+  border-radius:14px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)!important;font-family:var(--lx-sans)!important;transition:border-color .3s,box-shadow .3s,background .3s!important}
+html.lux .modal input::placeholder,html.lux .modal textarea::placeholder{color:#6f6a62!important;opacity:1}
+html.lux .modal input:not([type=checkbox]):not([type=radio]):focus,html.lux .modal select:focus,html.lux .modal textarea:focus{outline:none!important;border-color:var(--lx-gold)!important;
+  background:rgba(201,169,106,.05)!important;box-shadow:0 0 0 3px rgba(201,169,106,.16),inset 0 1px 0 rgba(255,255,255,.04)!important}
+html.lux .modal input:disabled,html.lux .modal select:disabled{opacity:.5}
+html.lux .modal select{background-image:linear-gradient(45deg,transparent 50%,var(--lx-gold) 50%),linear-gradient(135deg,var(--lx-gold) 50%,transparent 50%)!important;
+  background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%!important;background-size:6px 6px,6px 6px!important;background-repeat:no-repeat!important;-webkit-appearance:none;appearance:none;padding-right:38px!important}
+html.lux .modal select option{background:#141418;color:var(--lx-ink)}
+html.lux .modal input[type=checkbox],html.lux .modal input[type=radio]{accent-color:var(--lx-gold)}
+html.lux .modal .field label,html.lux .modal label{color:#d6cfc2!important;font-weight:500!important;letter-spacing:.02em}
+html.lux .modal .field>label{font-size:11.5px!important;letter-spacing:.16em!important;text-transform:uppercase;color:var(--lx-gold2)!important;font-weight:600!important}
+html.lux .modal .address-picker{background:rgba(255,255,255,.02)!important;border:1px solid var(--mx-line)!important;border-radius:16px!important}
+html.lux .modal .address-step small{color:var(--lx-gold)!important;letter-spacing:.14em}
+html.lux .modal .formhint{color:var(--lx-mute)!important}
+
+/* ---------- Buttons ---------- */
+html.lux .modal :where(#modalBody) button,html.lux .modal :where(#modalBody) .btn-buy{
+  background:var(--mx-gold-grad)!important;color:#0b0b0b!important;border:0!important;border-radius:999px!important;font-weight:700!important;letter-spacing:.1em!important;
+  box-shadow:0 14px 34px rgba(201,169,106,.22),inset 0 1px 0 rgba(255,255,255,.35)!important;text-shadow:none!important;
+  transition:transform .2s ease-out,box-shadow .35s,filter .3s!important}
+html.lux .modal :where(#modalBody) button:hover{box-shadow:0 18px 44px rgba(201,169,106,.38),inset 0 1px 0 rgba(255,255,255,.4)!important;filter:brightness(1.05)}
+html.lux .modal :where(#modalBody) button:active{transform:scale(.97)}
+html.lux .modal :where(#modalBody) button:disabled{opacity:.45!important;filter:grayscale(.4);box-shadow:none!important}
+html.lux .modal #modalBody button.outline,html.lux .modal #modalBody a.outline,html.lux .modal #modalBody .btn-cart,html.lux .modal #modalBody button.light,html.lux .modal #modalBody .sgbtn{
+  background:rgba(255,255,255,.025)!important;color:var(--lx-ink)!important;border:1px solid var(--mx-gold-line)!important;border-radius:999px!important;
+  font-weight:600!important;letter-spacing:.06em!important;box-shadow:none!important;text-decoration:none!important;transition:border-color .3s,color .3s,background .3s,transform .2s!important}
+html.lux .modal #modalBody button.outline:hover,html.lux .modal #modalBody a.outline:hover,html.lux .modal #modalBody .btn-cart:hover,html.lux .modal #modalBody button.light:hover,html.lux .modal #modalBody .sgbtn:hover{
+  border-color:var(--lx-gold)!important;color:var(--lx-gold2)!important;background:rgba(201,169,106,.08)!important}
+html.lux .modal #modalBody .linkbtn{background:transparent!important;color:var(--lx-gold2)!important;border:0!important;text-decoration:underline;text-decoration-color:rgba(201,169,106,.4);text-underline-offset:4px;box-shadow:none!important}
+/* destructive text actions (e.g. Xóa) keep a clear red signal */
+html.lux .modal #modalBody button.outline[onclick^="cartRemove"],html.lux .modal #modalBody [onclick^="vCancelWebOrder"],html.lux .modal #modalBody .customer-logout{color:var(--mx-err)!important;border-color:var(--mx-err-line)!important;background:transparent!important}
+
+/* Chips / sizes / variants / thumbs */
+html.lux .modal #modalBody .chip,html.lux .modal #modalBody .chiprow button,html.lux .modal #modalBody [onclick^="window.__size"],html.lux .modal #modalBody [onclick^="window.__variant"]{
+  background:rgba(255,255,255,.03)!important;color:#ddd6c9!important;border:1px solid var(--mx-line2)!important;border-radius:12px!important;box-shadow:none!important;font-weight:500!important;letter-spacing:.04em!important;transition:all .3s!important}
+html.lux .modal #modalBody .chip:hover,html.lux .modal #modalBody .chiprow button:hover{border-color:var(--lx-gold)!important;color:var(--lx-gold2)!important}
+html.lux .modal #modalBody .chip.active,html.lux .modal #modalBody .chiprow button.active,html.lux .modal #modalBody .chip.selected,
+html.lux .modal #modalBody [onclick^="window.__size"].active,html.lux .modal #modalBody [onclick^="window.__variant"].active{
+  background:rgba(201,169,106,.14)!important;color:var(--lx-gold2)!important;border-color:var(--lx-gold)!important;box-shadow:0 0 0 1px var(--lx-gold) inset,0 8px 22px rgba(201,169,106,.15)!important}
+html.lux .modal #modalBody .chip:disabled,html.lux .modal #modalBody [onclick^="window.__size"]:disabled{opacity:.35!important;text-decoration:line-through}
+html.lux .modal .thumbs button,html.lux .modal [onclick^="window.__media"]{background:#0f0f12!important;border:1px solid var(--mx-line)!important;border-radius:12px!important;box-shadow:none!important;padding:0;overflow:hidden}
+html.lux .modal .thumbs button.selected,html.lux .modal [onclick^="window.__media"].selected{border-color:var(--lx-gold)!important;box-shadow:0 0 0 1px var(--lx-gold)!important}
+
+/* ---------- Surfaces / cards ---------- */
+html.lux .modal .notice,html.lux .modal .freeship,html.lux .modal .customer-demo-note,html.lux .modal .customer-data-note,html.lux .modal .formhint.notice{
+  background:linear-gradient(135deg,rgba(201,169,106,.10),rgba(201,169,106,.04))!important;border:1px solid rgba(201,169,106,.30)!important;color:#e9dcbc!important;border-radius:14px!important}
+html.lux .modal .notice b,html.lux .modal .customer-demo-note b{color:var(--lx-gold2)!important}
+html.lux .modal .cartitem,html.lux .modal .detailsection,html.lux .modal .paybox,html.lux .modal .supportitem,html.lux .modal .couponcard,html.lux .modal .trackbox,
+html.lux .modal .timelineitem,html.lux .modal .review-card,html.lux .modal .panel,html.lux .modal .vcard,html.lux .modal .servicecard,html.lux .modal .rvitem,
+html.lux .modal .customer-order,html.lux .modal .customer-product,html.lux .modal .customer-profile-card,html.lux .modal .customer-tier,html.lux .modal .customer-empty,
+html.lux .modal .emptycart,html.lux .modal .outfitcard,html.lux .modal .desccontent,html.lux .modal .basic-variant-box,html.lux .modal .upload-box{
+  background:var(--mx-card)!important;border:1px solid var(--mx-line)!important;border-radius:18px!important;color:var(--lx-ink)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important}
+html.lux .modal .supportitem,html.lux .modal .couponcard,html.lux .modal .cartitem{transition:border-color .35s,transform .45s var(--lx-ease),box-shadow .4s}
+html.lux .modal .supportitem:hover,html.lux .modal .couponcard:hover,html.lux .modal .cartitem:hover{border-color:rgba(201,169,106,.38)!important;box-shadow:0 18px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05)!important}
+html.lux .modal .couponcard{border-style:dashed!important;border-color:rgba(201,169,106,.45)!important;background:linear-gradient(120deg,rgba(201,169,106,.10),rgba(255,255,255,.02))!important}
+html.lux .modal .supportitem h3,html.lux .modal .supportitem b{color:var(--lx-ink)!important}
+html.lux .modal .emptycart{text-align:center}
+html.lux .modal .emptycart h3,html.lux .modal .customer-empty h3{font-family:var(--lx-serif)!important}
+
+/* Totals */
+html.lux .modal .totalrow{border-color:rgba(255,255,255,.08)!important;border-bottom-style:dashed!important;color:#d4cdbf!important}
+html.lux .modal .totalrow b{color:var(--lx-ink)!important;font-variant-numeric:tabular-nums}
+html.lux .modal .totalrow:last-of-type b,html.lux .modal #cartTotal{color:var(--lx-gold2)!important}
+html.lux .modal [style*="#16794a"],html.lux .modal [style*="#14633d"],html.lux .modal [style*="#22c55e"],html.lux .modal [style*="#15803d"]{color:var(--mx-ok)!important}
+
+/* Product detail */
+html.lux .modal .gallerymain{background:radial-gradient(120% 90% at 50% 20%,#1b1b20,#0c0c0f)!important;border:1px solid var(--mx-line)!important;border-radius:20px!important}
+html.lux .modal .detailprice{font-family:var(--lx-serif)!important;color:var(--lx-gold2)!important;font-weight:600!important;font-size:clamp(30px,7vw,40px)!important;letter-spacing:0!important}
+html.lux .modal .detailprice *{color:inherit}
+html.lux .modal .detailprice s,html.lux .modal .detailprice del{color:var(--lx-dim)!important;font-family:var(--lx-sans)!important;font-size:.45em}
+html.lux .modal .offbadge,html.lux .modal .tag{background:var(--mx-gold-grad)!important;color:#0b0b0b!important;border:0!important;font-weight:700!important;letter-spacing:.08em}
+html.lux .modal .specgrid>div,html.lux .modal .specgrid div{background:rgba(255,255,255,.03)!important;border:1px solid var(--mx-line)!important;border-radius:14px!important;color:var(--lx-ink)!important}
+html.lux .modal .specgrid small,html.lux .modal .specgrid span{color:var(--lx-mute)!important}
+html.lux .modal .trustrow span,html.lux .modal .paybox span[style],html.lux .modal .pill{background:var(--mx-ok-bg)!important;color:var(--mx-ok)!important;border:1px solid var(--mx-ok-line)!important;border-radius:999px!important}
+html.lux .modal .paybox{background:linear-gradient(135deg,rgba(201,169,106,.09),rgba(255,255,255,.02))!important;border-color:var(--mx-gold-line)!important}
+html.lux .modal .paybox em{color:var(--lx-gold2)!important;font-style:normal}
+html.lux .modal .lowstock{color:var(--mx-warn)!important}
+html.lux .modal .relcard{background:var(--mx-card)!important;border:1px solid var(--mx-line)!important;border-radius:16px!important;color:var(--lx-ink)!important;box-shadow:none!important;overflow:hidden;transition:transform .45s var(--lx-ease),border-color .3s!important}
+html.lux .modal .relcard:hover{transform:translateY(-4px);border-color:rgba(201,169,106,.45)!important}
+html.lux .modal .relcard *{color:inherit}
+html.lux .modal .relcard b{color:var(--lx-gold2)!important}
+html.lux .modal .buybar{background:linear-gradient(180deg,rgba(13,13,16,0),rgba(13,13,16,.96) 30%)!important;border-top:1px solid var(--mx-line)!important}
+html.lux .modal .stars{color:var(--lx-gold)!important}
+
+/* Status badges (customer orders / tracking) */
+html.lux .modal .pill.orange,html.lux .modal .pill[class*="warn"]{background:rgba(240,201,135,.10)!important;color:var(--mx-warn)!important;border-color:rgba(240,201,135,.35)!important}
+html.lux .modal .timeline{border-color:rgba(201,169,106,.35)!important}
+html.lux .modal .timelineitem:before{background:var(--lx-gold)!important;box-shadow:0 0 0 4px rgba(201,169,106,.18)!important}
+
+/* ---------- Inline-styled fragments (scoped to the modal only) ---------- */
+html.lux .modal #modalBody [style*="background:#fff;"],html.lux .modal #modalBody [style$="background:#fff"],html.lux .modal #modalBody [style*="background:#ffffff"],
+html.lux .modal #modalBody [style*="background:#fafafa"],html.lux .modal #modalBody [style*="background:#f7f7f5"],html.lux .modal #modalBody [style*="background:#f7f7f7"],
+html.lux .modal #modalBody [style*="background:#f4f4f5"],html.lux .modal #modalBody [style*="background:#f3f3f3"],html.lux .modal #modalBody [style*="background:#f2f2f2"],
+html.lux .modal #modalBody [style*="background:#f1f1f1"],html.lux .modal #modalBody [style*="background:#f0f0ee"],html.lux .modal #modalBody [style*="background:#eee"],
+html.lux .modal #modalBody [style*="background:#f3f1ee"],html.lux .modal #modalBody [style*="background:#f7eee9"]{background:rgba(255,255,255,.035)!important;border-color:var(--mx-line)!important}
+html.lux .modal #modalBody [style*="background:#fff0f0"],html.lux .modal #modalBody [style*="background:#fff7f7"],html.lux .modal #modalBody [style*="background:#fff1f2"]{background:linear-gradient(135deg,rgba(201,169,106,.14),rgba(201,169,106,.04))!important;border-color:rgba(201,169,106,.38)!important}
+html.lux .modal #modalBody [style*="background:#ecf8f1"]{background:var(--mx-ok-bg)!important;border-color:var(--mx-ok-line)!important}
+html.lux .modal #modalBody [style*="color:#111"],html.lux .modal #modalBody [style*="color:#171717"],html.lux .modal #modalBody [style*="color:#222"],html.lux .modal #modalBody [style*="color:#333"],html.lux .modal #modalBody [style*="color:#444"]{color:var(--lx-ink)!important}
+html.lux .modal #modalBody [style*="color:#555"],html.lux .modal #modalBody [style*="color:#666"],html.lux .modal #modalBody [style*="color:#777"],html.lux .modal #modalBody [style*="color:#888"],html.lux .modal #modalBody [style*="color:#71717a"],html.lux .modal #modalBody [style*="color:#52525b"]{color:var(--lx-mute)!important}
+html.lux .modal #modalBody [style*="color:#b00020"],html.lux .modal #modalBody [style*="color:#d00020"],html.lux .modal #modalBody [style*="color:#8c2632"]{color:var(--lx-gold2)!important}
+html.lux .modal #modalBody [style*="color:#e21b2d"],html.lux .modal #modalBody [style*="color:#b3261e"],html.lux .modal #modalBody [style*="color:#ed1c2d"]{color:var(--mx-err)!important}
+html.lux .modal #modalBody [style*="border:1px solid #eee"],html.lux .modal #modalBody [style*="border:1px solid #e"],html.lux .modal #modalBody [style*="border-color:#eee"]{border-color:var(--mx-line)!important}
+
+/* Payment / QR card */
+html.lux .modal .verus-pay-card{background:linear-gradient(170deg,rgba(201,169,106,.08),rgba(255,255,255,.02) 40%,rgba(255,255,255,.01))!important;border:1px solid var(--mx-gold-line)!important;border-radius:22px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)!important}
+html.lux .modal .verus-pay-card [style*="font-size:clamp(28px"]{font-family:var(--lx-serif)!important;font-weight:600!important;letter-spacing:0!important;color:var(--lx-gold2)!important}
+html.lux .modal .verus-pay-card img{background:#fff!important;padding:10px;border:1px solid rgba(201,169,106,.45)!important;border-radius:16px!important;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+html.lux .modal .verus-pay-card a[download]{border:1px solid var(--mx-gold-line)!important;color:var(--lx-gold2)!important;border-radius:999px!important;background:rgba(255,255,255,.03)!important;letter-spacing:.08em}
+html.lux .modal .verus-pay-card a[download]:hover{background:rgba(201,169,106,.10)!important}
+
+/* ---------- Customer dashboard (Tài khoản) ---------- */
+html.lux .customer-dashboard-modal #customerDashboard{background:transparent!important;color:var(--lx-ink)!important;border:1px solid var(--mx-line)!important;border-radius:20px!important;overflow:hidden}
+html.lux .modal .customer-side{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01))!important;border-color:var(--mx-line)!important;color:var(--lx-ink)!important}
+html.lux .modal .customer-main{background:transparent!important;color:var(--lx-ink)!important}
+html.lux .modal .customer-brand b,html.lux .modal .customer-side-user b{color:var(--lx-ink)!important}
+html.lux .modal .customer-brand small,html.lux .modal .customer-side-user small{color:var(--lx-mute)!important}
+html.lux .modal .customer-brand-mark,html.lux .modal .customer-avatar,html.lux .modal .customer-vip-icon{background:var(--mx-gold-grad)!important;color:#0b0b0b!important;border:0!important}
+html.lux .modal .customer-brand-mark span{color:#0b0b0b!important}
+html.lux .modal .customer-tabs button,html.lux .modal .customer-side nav button,html.lux .modal .customer-side [onclick^="vCustomerTab"]{background:transparent!important;color:#cfc8bb!important;border:1px solid transparent!important;border-radius:12px!important;box-shadow:none!important;font-weight:500!important;letter-spacing:.04em!important}
+html.lux .modal .customer-tabs button:hover,html.lux .modal .customer-side [onclick^="vCustomerTab"]:hover{color:var(--lx-gold2)!important;background:rgba(201,169,106,.06)!important}
+html.lux .modal .customer-tabs button.active,html.lux .modal .customer-side [onclick^="vCustomerTab"].active{background:rgba(201,169,106,.12)!important;color:var(--lx-gold2)!important;border-color:rgba(201,169,106,.35)!important}
+html.lux .modal .customer-welcome{background:linear-gradient(135deg,rgba(201,169,106,.14),rgba(255,255,255,.02) 60%)!important;border:1px solid var(--mx-gold-line)!important;border-radius:20px!important;color:var(--lx-ink)!important}
+html.lux .modal .customer-welcome p{color:#d5cdbf!important}
+html.lux .modal .customer-stat{background:var(--mx-card)!important;border:1px solid var(--mx-line)!important;border-radius:18px!important;color:var(--lx-ink)!important;box-shadow:none!important;transition:border-color .3s,transform .45s var(--lx-ease)!important}
+html.lux .modal .customer-stat:hover{border-color:rgba(201,169,106,.45)!important;transform:translateY(-3px)}
+html.lux .modal .customer-stat span{color:var(--lx-gold)!important;letter-spacing:.2em}
+html.lux .modal .customer-stat b{font-family:var(--lx-serif)!important;color:var(--lx-ink)!important;font-size:34px!important;font-weight:600!important}
+html.lux .modal .customer-stat small{color:var(--lx-mute)!important}
+html.lux .modal .customer-vip{background:radial-gradient(120% 140% at 100% 0%,rgba(201,169,106,.22),transparent 55%),linear-gradient(160deg,#18181d,#0d0d10)!important;border:1px solid var(--mx-gold-line)!important;border-radius:20px!important;color:var(--lx-ink)!important}
+html.lux .modal .customer-vip-bar{background:rgba(255,255,255,.08)!important}
+html.lux .modal .customer-vip-bar span{background:var(--mx-gold-grad)!important}
+html.lux .modal .customer-vip-foot,html.lux .modal .customer-footer-note{color:var(--lx-mute)!important}
+html.lux .modal .customer-order-meta,html.lux .modal .customer-product-info small{color:var(--lx-mute)!important}
+html.lux .modal .customer-tier.active,html.lux .modal .customer-tier[class*="current"]{border-color:var(--lx-gold)!important;background:rgba(201,169,106,.10)!important}
+html.lux .modal .customer-section-head{border-color:var(--mx-line)!important}
+html.lux .modal .customer-section-head h3,html.lux .modal .customer-page-heading h2{font-family:var(--lx-serif)!important}
+
+/* ---------- Chat ---------- */
+html.lux #vChatBox{background:rgba(255,255,255,.02)!important;border:1px solid var(--mx-line)!important;border-radius:16px!important;padding:12px!important}
+html.lux #vChatBox .vmsg{background:rgba(255,255,255,.05)!important;color:var(--lx-ink)!important;border:1px solid var(--mx-line)!important}
+html.lux #vChatBox .vmsg.staff{background:rgba(201,169,106,.10)!important;border-color:rgba(201,169,106,.30)!important}
+html.lux #vChatBox .vmsg.customer{background:rgba(255,255,255,.06)!important}
+html.lux #vChatBox .vmsg b{color:var(--lx-gold)!important;letter-spacing:.12em}
+
+/* ---------- Đăng nhập (auth modal inside .modal) ---------- */
+html.lux .modal.auth-modal{background:var(--mx-glass)!important;border-color:var(--mx-gold-line)!important}
+html.lux .modal.auth-modal #modalBody{background:transparent!important}
+html.lux .modal .va-card{background:transparent!important;color:var(--lx-ink)!important;border:0!important}
+html.lux .modal .va-brand{color:var(--lx-ink)!important;letter-spacing:.32em!important}
+html.lux .modal .va-brand span,html.lux .modal .va-brand b{color:var(--lx-gold)!important}
+html.lux .modal .va-sub,html.lux .modal .va-legal{color:var(--lx-mute)!important}
+html.lux .modal .va-form-alert{background:var(--mx-err-bg)!important;border:1px solid var(--mx-err-line)!important;color:#ffd0d4!important;border-radius:12px!important}
+
+/* ---------- Google account pop-up (#verusGoogleAccount) ---------- */
+html.lux #verusGoogleAccount{background:radial-gradient(1000px 600px at 50% 0%,rgba(201,169,106,.08),transparent 60%),rgba(3,3,4,.82)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+html.lux #verusGoogleAccount .vga-panel{background:var(--mx-glass)!important;border:1px solid var(--mx-gold-line)!important;border-radius:26px!important;color:var(--lx-ink)!important;
+  box-shadow:0 50px 140px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.07)!important;backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);padding:32px 26px 26px!important;animation:mxIn .55s var(--lx-ease) both;overflow:hidden}
+html.lux #verusGoogleAccount .vga-panel:before{content:"";position:absolute;left:26px;right:26px;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(234,214,166,.85),transparent)}
+html.lux #verusGoogleAccount .vga-close{background:rgba(255,255,255,.03)!important;border:1px solid var(--mx-gold-line)!important;color:var(--lx-gold2)!important;display:grid;place-items:center;line-height:1;transition:background .3s,color .3s!important}
+html.lux #verusGoogleAccount .vga-close:hover{background:var(--mx-gold-grad)!important;color:#0b0b0b!important}
+html.lux #verusGoogleAccount .vga-logo{color:var(--lx-ink)!important;letter-spacing:.38em!important;font-weight:600!important;font-size:12px!important}
+html.lux #verusGoogleAccount .vga-logo span{color:var(--lx-gold)!important}
+html.lux #verusGoogleAccount h2{font-family:var(--lx-serif)!important;font-weight:600!important;font-size:clamp(32px,8vw,40px)!important;line-height:1.05!important;letter-spacing:0!important;color:var(--lx-ink)!important}
+html.lux #verusGoogleAccount .vga-desc,html.lux #verusGoogleAccount .vga-note{color:var(--lx-mute)!important}
+html.lux #verusGoogleAccount .vga-alert{background:var(--mx-err-bg)!important;border-color:var(--mx-err-line)!important;color:#ffd0d4!important}
+
+/* Google sign-in buttons — Google dark theme + official multicolour mark */
+html.lux #verusGoogleAccount .vga-google,html.lux .modal .va-google{background:#131314!important;border:1px solid #8E918F!important;color:#E3E3E3!important;
+  font-family:'Google Sans',var(--lx-sans)!important;font-weight:500!important;font-size:14px!important;line-height:20px!important;letter-spacing:.01em!important;
+  min-height:48px!important;padding:0 12px!important;gap:10px!important;border-radius:999px!important;box-shadow:none!important;display:flex!important;align-items:center;justify-content:center;transition:background .25s,border-color .25s!important}
+html.lux #verusGoogleAccount .vga-google:hover,html.lux .modal .va-google:hover{background:#1c1c1e!important;border-color:#b5b8b6!important}
+html.lux #verusGoogleAccount .vga-google span:not(.vga-g){color:#E3E3E3!important}
+html.lux #verusGoogleAccount .vga-g,html.lux .modal .va-google-mark{width:18px!important;height:18px!important;min-width:18px;margin:0!important;border-radius:0!important;font-size:0!important;color:transparent!important;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234285F4' d='M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z'/%3E%3Cpath fill='%2334A853' d='M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z'/%3E%3Cpath fill='%23FBBC05' d='M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z'/%3E%3Cpath fill='%23EA4335' d='M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z'/%3E%3C/svg%3E") center/18px 18px no-repeat!important;display:inline-block!important}
+
+/* ---------- Toast ---------- */
+html.lux .toast{background:rgba(14,14,17,.92)!important;color:var(--lx-ink)!important;border:1px solid var(--mx-gold-line)!important;border-radius:999px!important;padding:12px 20px!important;
+  box-shadow:0 20px 50px rgba(0,0,0,.55)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);letter-spacing:.02em;font-size:13px!important}
+html.lux .toast:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lx-gold);margin-right:10px;vertical-align:middle;box-shadow:0 0 10px var(--lx-gold)}
+
+/* ---------- Mobile ---------- */
+@media (max-width:640px){
+  html.lux .modal{border-radius:22px!important}
+  html.lux .modal .modalhead{padding-top:4px!important}
+  html.lux .modal .modalhead button.light{padding:8px 13px!important;letter-spacing:.14em!important;font-size:10.5px!important}
+  html.lux .modal .supportitem,html.lux .modal .cartitem,html.lux .modal .detailsection{border-radius:16px!important}
+}
+@media (prefers-reduced-motion:reduce){
+  html.lux .modalbg.show .modal,html.lux #verusGoogleAccount .vga-panel{animation:none!important}
+}
+
+/* ---------- Refinements after visual QA ---------- */
+html.lux .modal,html.lux #verusGoogleAccount,html.lux .toast{font-variant-numeric:lining-nums}
+html.lux .modal *{font-variant-numeric:lining-nums}
+html.lux .modal{background:linear-gradient(165deg,rgba(19,19,23,.97),rgba(12,12,15,.98) 55%,rgba(9,9,11,.98))!important}
+html.lux .modal .modalhead{background:rgb(19,19,23)!important;box-shadow:0 -30px 0 rgb(19,19,23)!important}
+html.lux .modal .address-step{background:rgba(255,255,255,.03)!important;border:1px solid var(--mx-line)!important;color:var(--lx-ink)!important}
+html.lux .modal .customer-tab small{background:rgba(201,169,106,.16)!important;color:var(--lx-gold2)!important;border:1px solid rgba(201,169,106,.3)}
+html.lux .modal .buybar{background:rgba(13,13,16,.97)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-left:4px!important;padding-right:4px!important}

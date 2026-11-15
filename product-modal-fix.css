@@ -1,0 +1,66 @@
+/* ===== VERUS PRODUCT MODAL FIX v1 =====
+   Khung chi tiết sản phẩm: header gọn 1 dòng, thân cuộn riêng, thanh MUA luôn ghim đáy,
+   không bao giờ tràn ngang. Chỉ áp dụng cho .modal.product-modal (không đụng modal khác). */
+.modal.product-modal,html.lux .modal.product-modal{display:flex!important;flex-direction:column;padding:0!important;overflow:hidden!important;position:relative}
+.modal.product-modal:before{left:20px;right:20px}
+.modal.product-modal .modalhead,html.lux .modal.product-modal .modalhead{position:static!important;flex:0 0 auto;display:flex!important;align-items:center!important;justify-content:space-between;gap:10px;
+  margin:0!important;padding:max(12px,env(safe-area-inset-top,0px)) 16px 12px!important;min-height:58px;box-shadow:none!important;border-bottom:1px solid rgba(201,169,106,.28)!important;border-image:none!important;
+  background:rgb(19,19,23)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;z-index:6}
+.modal.product-modal #modalTitle,html.lux .modal.product-modal #modalTitle{flex:1 1 auto;min-width:0;font-size:0!important;line-height:0!important;margin:0!important;white-space:nowrap;overflow:visible}
+.modal.product-modal #modalTitle:before{content:"CHI TIẾT SẢN PHẨM";display:block;line-height:1.8;font-family:var(--lx-sans,inherit);font-size:11px;font-weight:600;letter-spacing:.24em;color:var(--lx-gold,#c9a96a)}
+.modal.product-modal .modalhead button.light,html.lux .modal.product-modal .modalhead button.light{flex:0 0 auto;min-height:44px!important;padding:0 16px!important}
+.modal.product-modal #modalBody,html.lux .modal.product-modal #modalBody{flex:1 1 auto;min-height:0;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  padding:16px 16px 28px;overflow-wrap:break-word}
+.modal.product-modal #modalBody img,.modal.product-modal #modalBody video{max-width:100%}
+/* lưới: ép cột co được -> hết tràn ngang */
+.modal.product-modal .detailgrid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:18px!important;align-items:start}
+.modal.product-modal .detailgrid>*{min-width:0}
+.modal.product-modal .gallerymain{width:100%;max-width:100%;aspect-ratio:1/1}
+.modal.product-modal .gallerymain img,.modal.product-modal .gallerymain video{width:100%;height:100%;object-fit:cover;display:block}
+.modal.product-modal .thumbs{max-width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.modal.product-modal .thumbs::-webkit-scrollbar{display:none}
+.modal.product-modal .thumbs button{flex:0 0 64px;width:64px;min-width:64px;height:64px}
+/* chữ & giá */
+html.lux .modal.product-modal #modalBody .detailgrid h2{font-size:clamp(21px,5.8vw,28px)!important;line-height:1.22!important;margin:6px 0 8px!important;overflow-wrap:anywhere}
+html.lux .modal.product-modal .detailprice{font-size:clamp(26px,7vw,34px)!important;line-height:1.15;margin:8px 0!important;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.modal.product-modal .detailsection,html.lux .modal.product-modal .detailsection{max-width:100%;margin:12px 0!important;padding:14px 16px!important}
+.modal.product-modal .detailsection>h4{margin:0 0 10px!important}
+.modal.product-modal .desccontent,html.lux .modal.product-modal .desccontent{padding:14px 16px!important}
+.modal.product-modal .paybox,html.lux .modal.product-modal .paybox{padding:14px 16px!important}
+.modal.product-modal .paybox>b{margin-bottom:8px}
+.modal.product-modal .paybox>div{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:9px 0!important;border-top:1px solid rgba(201,169,106,.24)!important}
+.modal.product-modal .paybox>div>em{text-align:left!important}
+.modal.product-modal .chiprow{display:flex;flex-wrap:wrap;gap:8px}
+.modal.product-modal .chiprow .chip,html.lux .modal.product-modal #modalBody .chiprow button{min-height:44px;min-width:48px;padding:0 14px;max-width:100%}
+.modal.product-modal .specgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.modal.product-modal .specgrid b{overflow-wrap:anywhere}
+.modal.product-modal .paybox div{flex-wrap:wrap}
+.modal.product-modal .trustrow{display:flex;flex-wrap:wrap;gap:6px}
+.modal.product-modal .sgbtn{width:100%;min-height:46px}
+.modal.product-modal .linkbtn{min-height:44px;margin:0 14px 0 0!important}
+.modal.product-modal .desccontent{overflow-x:auto;max-width:100%}
+.modal.product-modal .desccontent table{display:table;width:100%;max-width:100%}
+.modal.product-modal .relgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}
+/* thanh mua ghim đáy khung (thay buybar trong luồng) */
+.modal.product-modal #modalBody .buybar{display:none!important}
+#pmBar{flex:0 0 auto;display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgb(13,13,16);border-top:1px solid rgba(201,169,106,.3);box-shadow:0 -14px 30px rgba(0,0,0,.45);position:relative;z-index:6}
+#pmBar button{flex:1 1 0;min-width:0;min-height:50px;padding:0 10px;border-radius:999px;font:600 14px/1.2 var(--lx-sans,inherit);letter-spacing:.06em;white-space:nowrap;cursor:pointer;transition:transform .15s,filter .2s}
+#pmBar .pm-cart{background:rgba(255,255,255,.03);color:#f3ead7;border:1px solid rgba(201,169,106,.65)}
+#pmBar .pm-buy{flex:1.15;background:var(--mx-gold-grad,linear-gradient(135deg,#ecd9a8,#c9a96a 55%,#a98341));color:#0b0b0b;border:0;font-weight:800;box-shadow:0 10px 26px rgba(201,169,106,.28)}
+#pmBar button:active{transform:scale(.97)}
+#pmBar button:disabled{opacity:.42;cursor:not-allowed;filter:grayscale(.4);box-shadow:none}
+
+/* ---- ĐIỆN THOẠI: bottom-sheet toàn màn hình ---- */
+@media (max-width:700px){
+  #modalbg.pm-open.show{padding:0!important;align-items:stretch!important;overflow:hidden!important}
+  .modal.product-modal,html.lux .modal.product-modal{width:100%!important;max-width:100%!important;height:100dvh!important;max-height:100dvh!important;margin:0!important;border-radius:0!important;border-left:0!important;border-right:0!important}
+}
+/* ---- MÁY TÍNH / TABLET ---- */
+@media (min-width:701px){
+  #modalbg.pm-open.show{padding:24px!important;align-items:center!important;overflow:hidden!important}
+  .modal.product-modal,html.lux .modal.product-modal{width:min(1040px,100%)!important;max-height:min(92dvh,940px)!important;border-radius:24px!important}
+  .modal.product-modal #modalBody{padding:24px 28px 32px}
+  .modal.product-modal .detailgrid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)!important;gap:36px!important}
+  .modal.product-modal .detailgrid>div:first-child{position:sticky;top:0}
+  .modal.product-modal .relgrid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
